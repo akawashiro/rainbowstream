@@ -1,7 +1,13 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+import json
+import os
 
 
 def get_realname():
-    r = dict()
-    r[u'a_kwsr'] = u"河田 旺"
-    return r
+    with open(os.path.expanduser('~')+"/.rainbow_realname.json") as f:
+        d = json.load(f, "utf-8")
+    return d
+
+if __name__ == '__main__':
+    print get_realname()
