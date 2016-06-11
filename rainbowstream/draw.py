@@ -17,6 +17,7 @@ from .colors import *
 from .config import *
 from .py3patch import *
 from .emoji import *
+from realname import get_realname
 
 # Draw global variables
 dg = {}
@@ -193,6 +194,11 @@ def draw(t, keyword=None, humanize=True, noti=False, fil=[], ig=[]):
     favorite_count = t['favorite_count']
     client = t['source']
     date = parser.parse(created_at)
+
+    rn = get_realname()
+    if t['user']['screen_name'] in rn.keys():
+        screen_name += '('+rn[t['user']['screen_name']]+')'
+
     try:
         clock_format = c['FORMAT']['TWEET']['CLOCK_FORMAT']
     except:
